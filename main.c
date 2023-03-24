@@ -11,6 +11,7 @@ int rgb_to_int(double r, double g, double b)
     return (color);
 }
 
+
 void	draw_pixel_xy(void	*mlx_ptr,void *window_ptr, float x, float y, int size_x, int size_y)
 {
 	mlx_pixel_put(mlx_ptr, window_ptr, x + size_x/2 ,y+size_y/2, rgb_to_int(1,0,0));
