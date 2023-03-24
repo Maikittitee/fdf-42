@@ -11,16 +11,34 @@ int rgb_to_int(double r, double g, double b)
     return (color);
 }
 
+void	draw_pixel_xy(void	*mlx_ptr,void *window_ptr, float x, float y, int size_x, int size_y)
+{
+	mlx_pixel_put(mlx_ptr, window_ptr, x + size_x/2 ,y+size_y/2, rgb_to_int(1,0,0));
+}
+
 int	main()
 {
 	void	*mlx_ptr;
 	void	*window_ptr;
+	float	x;
+	float	y;
+
 
 	mlx_ptr = mlx_init();
 	window_ptr = mlx_new_window(mlx_ptr, 500, 500, "hello");
-	mlx_pixel_put(mlx_ptr, window_ptr, 500/2, 500/2, rgb_to_int(1,0,0));
-	
-	
+
+	y = -125;
+	while (y >= -125 && y <= 125)
+	{
+		x = -125;
+		while (x >= -125 && x <= 125)
+		{
+			draw_pixel_xy(mlx_ptr, window_ptr, x, y, 500,500);
+			x++;
+		}
+		y++;
+		
+	}	
 	
 	
 	
