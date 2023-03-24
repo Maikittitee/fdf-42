@@ -34,7 +34,8 @@ int	main()
 		x = -125;
 		while (x >= -125 && x <= 125)
 		{
-			draw_pixel_xy(mlx_ptr, window_ptr, x, y, 500,500);
+			if (x*x + y*y < 100)
+				draw_pixel_xy(mlx_ptr, window_ptr, x, y, 500,500);
 			x++;
 		}
 		y++;
