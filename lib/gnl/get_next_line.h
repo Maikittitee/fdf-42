@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 00:44:40 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/03/25 17:36:10 by ktunchar         ###   ########.fr       */
+/*   Created: 2022/11/10 23:01:16 by ktunchar          #+#    #+#             */
+/*   Updated: 2022/12/22 22:19:34 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-#include "mlx/mlx.h"
-#include "lib/libft/libft.h"
-#include <stdio.h>
-#include <fcntl.h>
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
-typedef struct s_magic{
-	void	*mlx;
-	void	*win;
-	int		**z_metric;
-	int	width;
-	int	height;
-} t_magic;
+# include <fcntl.h>
+# include <unistd.h>
+# include <stddef.h>
+# include <stdlib.h>
+
+char	*ft_strchr(const char *s, int c);
+char	*get_next_line(int fd);
+char	*ft_strjoin_free(char *s1, char *s2);
+size_t	ft_strlen(const char *s, int mode);
+char	*ft_strdup_nl(const char *s1);
+char	*ft_strdup(const char *s1);
 
 #endif

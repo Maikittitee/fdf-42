@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 00:44:40 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/03/25 17:36:10 by ktunchar         ###   ########.fr       */
+/*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
+/*   Updated: 2023/03/25 17:38:56 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
+#include "fdf.h"
 
-#include "mlx/mlx.h"
-#include "lib/libft/libft.h"
-#include <stdio.h>
-#include <fcntl.h>
+int	import_map(t_magic *data, char **argv)
+{
+	int fd;
 
-typedef struct s_magic{
-	void	*mlx;
-	void	*win;
-	int		**z_metric;
-	int	width;
-	int	height;
-} t_magic;
-
-#endif
+	fd = open(argv[1], O_RDONLY);
+	data->width = get_width(fd);
+	data->height = get_height(fd);
+}
