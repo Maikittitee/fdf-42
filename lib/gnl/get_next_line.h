@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 23:01:16 by ktunchar          #+#    #+#             */
-/*   Updated: 2022/12/22 22:19:34 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/03/26 01:16:06 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 # include <stddef.h>
 # include <stdlib.h>
 
-char	*ft_strchr(const char *s, int c);
+char	*ft_strchr_gnl(const char *s, int c);
 char	*get_next_line(int fd);
 char	*ft_strjoin_free(char *s1, char *s2);
-size_t	ft_strlen(const char *s, int mode);
+size_t	ft_strlen_mode(const char *s, int mode);
 char	*ft_strdup_nl(const char *s1);
-char	*ft_strdup(const char *s1);
+char	*ft_strdup_gnl(const char *s1);
 
 #endif

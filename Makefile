@@ -5,11 +5,13 @@ CFLAGS	:= -Wall -Wextra -Werror
 
 LIB_DIR	:= ./lib
 
-SRCS	:= main.c
+SRCS	:= map.c
 OBJS	:= $(SRCS:.c=.o)
 
 LIBFT_DIR	:= $(LIB_DIR)/libft
 LIBFT	:= $(LIBFT_DIR)/libft.a
+
+GNL := $(LIB_DIR)/gnl/get_next_line.c $(LIB_DIR)/gnl/get_next_line_utils.c
 
 MLX_DIR	:= ./mlx
 MINILIBX	:= $(MLX_DIR)/libmlx.a
@@ -22,7 +24,7 @@ FRAME_W	:= -framework OpenGL -framework AppKit
 all: $(NAME)
 
 $(NAME): $(OBJS) $(MINILIBX) $(LIBFT)
-	$(CC) $(CFLAGS) $(OBJS) $(MINILIBX) -I$(LIBFT_DIR)\
+	$(CC) $(CFLAGS) $(OBJS) $(MINILIBX) $(GNL) -I$(LIBFT_DIR)\
 		-L$(LIBFT_DIR) -Lmlx -lft -lmlx $(FRAME_W) -o $(NAME)
 
 $(MINILIBX):
