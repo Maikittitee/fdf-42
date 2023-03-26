@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/03/26 01:45:29 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/03/27 00:50:15 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ int	read_map(t_magic *data, char **argv)
 	return (1);
 }
 
-int	main(int argc, char **argv)
-{
-	t_magic data;
+// int	main(int argc, char **argv)
+// {
+// 	t_magic data;
 
-	if (argc != 2)
-		return (1);
+// 	if (argc != 2)
+// 		return (1);
 
-	read_map(&data, argv);
-	printf("data.width: %d , data.height: %d", data.width,data.height);
-	return (0);
-}
+// 	read_map(&data, argv);
+// 	printf("data.width: %d , data.height: %d", data.width,data.height);
+// 	return (0);
+// }
