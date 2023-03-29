@@ -5,7 +5,7 @@ CFLAGS	:= -Wall -Wextra -Werror
 
 LIB_DIR	:= ./lib
 
-SRCS	:= map.c
+SRCS	:= map.c fdf_utils.c
 OBJS	:= $(SRCS:.c=.o)
 
 LIBFT_DIR	:= $(LIB_DIR)/libft
