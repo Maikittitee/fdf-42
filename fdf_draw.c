@@ -22,7 +22,11 @@ void	bresenham(t_magic *data, float x0, float y0, float x1, float y1)
 	int	z;
 	int	color;
 
-	z = data->z_metric[(int)y0][(int)x0];
+	if (y0 < data->height && x0 < data->width)
+		z = (data->z_metric)[(int)y0][(int)x0];
+	else
+		z = 0;
+	// printf("z is %d\n",z);
 
 	if (z == 0)
 		color = rgb_to_int(1,1,1);
