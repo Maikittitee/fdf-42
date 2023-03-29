@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/03/29 17:57:07 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:01:54 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,16 +121,16 @@ void	print_metric(t_magic *data)
 }
 
 
-int	main(int argc, char **argv)
-{
-	t_magic *data;
+// int	main(int argc, char **argv)
+// {
+// 	t_magic *data;
 
-	data = malloc(sizeof(t_magic) * 1);
-	if (argc != 2)
-		return (1);
-	read_map(data, argv[1]);
-	printf("data.width: %d , data.height: %d\n", data->width,data->height);
-	printf("---------- Z_Metric -----------\n");
-	print_metric(data);
-	return (0);
-}
+// 	data = malloc(sizeof(t_magic) * 1);
+// 	if (argc != 2)
+// 		return (1);
+// 	read_map(data, argv[1]);
+// 	printf("data.width: %d , data.height: %d\n", data->width,data->height);
+// 	printf("---------- Z_Metric -----------\n");
+// 	print_metric(data);
+// 	return (0);
+// }
