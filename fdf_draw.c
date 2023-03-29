@@ -24,10 +24,10 @@ void	bresenham(t_magic *data, float x0, float y0, float x1, float y1)
 	delta_y = (y1 - y0);
 	step_x = delta_x/ft_max(ft_abs(delta_x),ft_abs(delta_y));
 	step_y = delta_y/ft_max(ft_abs(delta_x),ft_abs(delta_y));
-	// step_x = delta_x/;
+	// step_x = delta_x/10000;
 	// step_y = delta_y/10000;
 
-	while (x0 <= x1 && y0 <= y1)
+	while (x0 <= x1 || y0 <= y1)
 	{
 		mlx_pixel_put(data->mlx, data->win, x0, y0,rgb_to_int(1,1,1));
 		printf("End point x0:%.2f, y0:%.2f\n",x0,y0);
@@ -36,4 +36,10 @@ void	bresenham(t_magic *data, float x0, float y0, float x1, float y1)
 	}
 }
 
-// void	draw_from_metric(t_magic data, )
+// void	draw_from_metric(t_magic *data)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	while (data->)
+// }

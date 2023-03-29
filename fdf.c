@@ -13,7 +13,7 @@ int	main(int argc, char **argv)
 	printf("data.width: %d , data.height: %d\n", data->width,data->height);
 	printf("############ = Z_Metric = ###########\n");
 	print_metric(data);
-	bresenham(data,10,10,500,500);
+	bresenham(data,10,10,500,400);
 
 	mlx_loop(data->mlx);
 	return (0);
