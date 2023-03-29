@@ -6,13 +6,13 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/03/26 01:45:29 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/03/29 16:02:15 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-size_t	count_word(char const *s, char c)
+static size_t	count_word(char const *s, char c)
 {
 	size_t	i;
 	size_t	count;
@@ -31,7 +31,7 @@ size_t	count_word(char const *s, char c)
 	return (count);
 }
 
-int		get_width(int fd)
+static int		get_width(int fd)
 {
 	char *line;
 	int 	width;
@@ -60,6 +60,33 @@ int	get_height(int	fd)
 
 }
 
+int	assign_z_metric(t_magic *data, int fd)
+{
+	int	i;
+	int j;
+	char *line;
+	char **line_split;
+
+	i = 0;
+	data->z_metric = ft_calloc(data->height + 1, sizeof(int));
+	while (i < data->height)
+	{
+		j = 0;
+		line = get_next_line(fd);
+		line_split = ft_split(line, " ");
+		free(line);
+		(data->z_metric)[i] = ft_calloc(data->width + 1, sizeof(int));
+		while  (j < data->width)
+		{
+			(data->z_metric)[i][j] = ft_atoi(line_split[j]);
+			j++;
+		}
+		(data->z_metric)[i][j] = 0;	
+		free(line_split);
+		i++;
+	}
+	(data->z_metric)[i][j] = 0;	
+}
 int	read_map(t_magic *data, char **argv)
 {
 	int fd;
@@ -67,17 +94,20 @@ int	read_map(t_magic *data, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	data->width = get_width(fd);
 	data->height = get_height(fd);
+	assign_z_metric(data, fd);
+	close(fd);
 	return (1);
 }
 
-int	main(int argc, char **argv)
-{
-	t_magic data;
 
-	if (argc != 2)
-		return (1);
+// int	main(int argc, char **argv)
+// {
+// 	t_magic data;
 
-	read_map(&data, argv);
-	printf("data.width: %d , data.height: %d", data.width,data.height);
-	return (0);
-}
+// 	if (argc != 2)
+// 		return (1);
+
+// 	read_map(&data, argv);
+// 	printf("data.width: %d , data.height: %d", data.width,data.height);
+// 	return (0);
+// }
