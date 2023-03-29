@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/03/29 17:07:23 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:57:07 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,25 @@ static size_t	count_word(char const *s, char c)
 	return (count);
 }
 
-static int		get_width(int fd)
+static int		get_width(char *filename)
 {
 	char *line;
 	int 	width;
-	
+	int		fd;
+
+	fd = open(filename,O_RDONLY);
 	line = get_next_line(fd);
 	width = count_word(line, ' ');
 	return (width);
 }
 
-int	get_height(int	fd)
+static int	get_height(char *filename)
 {
 	int	height;
 	char *line;
+	int		fd;
 
+	fd = open(filename,O_RDONLY);
 	height = 0;
 	while (1)
 	{
@@ -56,71 +60,77 @@ int	get_height(int	fd)
 		else
 			free(line);
 	}
-	return (height);
+	return (height - 1) ;
 
 }
 
-int	assign_z_metric(t_magic *data, int fd)
+int	assign_z_metric(t_magic *data, char *filename)
 {
 	int	i;
-	// int j;
+	int j;
 	char *line;
-	// char **line_split;
-	(void)fd;
-
-
-	i = 0;
-	data->z_metric = ft_calloc(data->height + 1, sizeof(int *));
-	// while (i < data->height)
-	// {
-		// line = get_next_line(fd);
-		// printf("line = %s\n",line);
-		// line = get_next_line(fd);
-		// printf("line = %s\n",line);
-		// line = get_next_line(fd);
-		// printf("line = %s\n",line);
-		// line = get_next_line(fd);
-		// printf("line = %s\n",line);
-
-		// line_split = ft_split(line, ' ');
-		// free(line);
-		// (data->z_metric)[i] = ft_calloc(data->width + 1, sizeof(int));
-		// printf("%s\n",line_split[1]);
-		// j = 0;
-		// // while  (line_split[j])
-		// // {
-		// // 	printf("-%d-\n",ft_atoi(line_split[j]));
-		// // 	//(data->z_metric)[i][j] = ft_atoi(line_split[j]);
-		// // 	j++;
-		// // }
-		// (data->z_metric)[i][j] = 0;	
-		// // ft_double_free(line_split);
-		// i++;
-	// }
-	(data->z_metric)[i] = 0;
-	return (1);	
-}
-int	read_map(t_magic *data, char **argv)
-{
+	char **line_split;
 	int fd;
 
-	fd = open(argv[1], O_RDONLY);
-	data->width = get_width(fd);
-	data->height = get_height(fd);
-	// assign_z_metric(data, fd);
-	close(fd);
+	fd = open(filename, O_RDONLY);
+	i = 0;
+	data->z_metric = ft_calloc(data->height, sizeof(int *));
+	while (i < data->height)
+	{
+		line = get_next_line(fd);
+		line_split = ft_split(line, ' ');
+		free(line);
+		(data->z_metric)[i] = ft_calloc(data->width, sizeof(int));
+		j = 0;
+		while  (j < data->width)
+		{
+			(data->z_metric)[i][j] = ft_atoi(line_split[j]);
+			j++;
+		}
+		ft_double_free(line_split);
+		i++;
+	}
+	return (1);	
+}
+int	read_map(t_magic *data, char *filename)
+{
+
+	data->width = get_width(filename);
+	data->height = get_height(filename);
+	assign_z_metric(data, filename);
 	return (1);
+}
+
+void	print_metric(t_magic *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->height)
+	{
+		j = 0;
+		while (j < data->width)
+		{
+			printf("%3d",(data->z_metric)[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }
 
 
 int	main(int argc, char **argv)
 {
-	t_magic data;
+	t_magic *data;
 
+	data = malloc(sizeof(t_magic) * 1);
 	if (argc != 2)
 		return (1);
-
-	read_map(&data, argv);
-	printf("data.width: %d , data.height: %d", data.width,data.height);
+	read_map(data, argv[1]);
+	printf("data.width: %d , data.height: %d\n", data->width,data->height);
+	printf("---------- Z_Metric -----------\n");
+	print_metric(data);
 	return (0);
 }
