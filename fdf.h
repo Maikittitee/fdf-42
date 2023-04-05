@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 00:44:40 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/04/05 15:35:43 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/04/06 00:30:13 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ void    print_metric(t_magic *data);
 void    bresenham(t_magic *data, float x0, float y0, float x1, float y1);
 int rgb_to_int(double r, double g, double b);
 void	draw_from_metric(t_magic *data);
+void	rotateZ(float *x, float *y, float z, float theta);
 
 #endif
