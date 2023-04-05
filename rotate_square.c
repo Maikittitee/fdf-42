@@ -16,6 +16,28 @@ void	iso(float *x,float *y, float *new_x,float *new_y, float rad)
 	*new_y = (*x * sin(rad) + *y * cos(rad));
 }
 
+void	draw_circle(t_magic *data, int x0, int y0, int r)
+{
+	int	x;
+	int	y;
+
+	(void)x0;
+	(void)y0;
+
+	y = 0;
+	while (y < 500)
+	{
+		x = 0;
+		while (x < 500)
+		{
+			if ((x - x0) * (x - x0) + (y - y0) * (y- y0) <= r*r)
+				mlx_pixel_put(data->mlx, data->win, x, y, rgb_to_int(1,0,0));
+			x++;
+		}
+		y++;
+	}
+}
+
 void	draw_square(t_magic data, int x0, int y0, int x1, int y1, float rad)
 {
 	float	x;
@@ -62,7 +84,8 @@ int	main()
 	// draw_square(data,-100,-100,100,100,data.rad);
 	// data.rad += 0.8;
 	// usleep(1000000);
-	mlx_mouse_hook(data.win, &mouse_event, &data);
+	// mlx_mouse_hook(data.win, &mouse_event, &data);
+	draw_circle(&data, 250, 250, 100);
 	mlx_loop(data.mlx);
 
 }
