@@ -37,8 +37,8 @@ void	bresenham(t_magic *data, float x0, float y0, float x1, float y1)
 	x1 *= data->zoom;
 	y1 *= data->zoom;
 
-	rotateZ((float *)&x0, (float *)&y0, z, 0.8);
-	rotateZ((float *)&x1, (float *)&y1, z, 0.8);
+	// rotateZ((float *)&x0, (float *)&y0, z, 0.8);
+	// rotateZ((float *)&x1, (float *)&y1, z, 0.8);
 	delta_x = (x1 - x0);
 	delta_y = (y1 - y0);
 

@@ -6,7 +6,7 @@ int	main(int argc, char **argv)
 
 	data = malloc(sizeof(t_magic) * 1);
 	data->mlx = mlx_init();
-	data->win = mlx_new_window(data->mlx,500,500,"ktunchar's FdF");
+	data->win = mlx_new_window(data->mlx,1600,1080,"ktunchar's FdF");
 	data->zoom = 20;
 	if (argc != 2)
 		return (1);
@@ -15,7 +15,6 @@ int	main(int argc, char **argv)
 	printf("############ = Z_Metric = ###########\n");
 	print_metric(data);
 	draw_from_metric(data);
-	// bresenham(data, 2, 3, 100, 100);
 
 	mlx_loop(data->mlx);
 	return (0);
