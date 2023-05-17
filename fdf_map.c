@@ -6,13 +6,13 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/18 02:59:23 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/18 03:12:04 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static size_t	count_word(char const *s, char c)
+size_t	count_word(char const *s, char c)
 {
 	size_t	i;
 	size_t	count;

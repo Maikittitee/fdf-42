@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 00:44:40 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/18 02:54:32 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/18 03:12:13 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void    print_metric(t_map *map);
 void    rotateZ(float *x, float *y, float z, float theta);
 void    ft_double_free(char **s);
 int rgb_to_int(double r, double g, double b);
+size_t	count_word(char const *s, char c);
 
 #endif
