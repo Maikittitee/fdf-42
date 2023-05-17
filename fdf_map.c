@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/18 01:00:17 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/18 02:59:23 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,40 +31,49 @@ static size_t	count_word(char const *s, char c)
 	return (count);
 }
 
-static int		get_width(char *filename)
+void get_width(char *filename, t_map *map)
 {
-	char *line;
-	int 	width;
+	char 	*line;
 	int		fd;
 
 	fd = open(filename,O_RDONLY);
 	line = get_next_line(fd);
-	width = count_word(line, ' ');
-	return (width);
+	map->width = count_word(line, ' ');
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+		if (line && (size_t)map->width != count_word(line, ' '))
+		{
+			// free_map_exit(map);		
+			printf("The file width is wrong");
+			exit(1);
+		}			
+	}
+	
 }
 
-static int	get_height(char *filename)
+void	get_height(char *filename, t_map *map)
 {
-	int	height;
 	char *line;
 	int		fd;
 
 	fd = open(filename,O_RDONLY);
-	height = 0;
+	map->height = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
-		height++;
 		if (!line)
 			break ;
 		else
+		{
 			free(line);
+			map->height++;
+		}
 	}
-	return (height - 1) ;
-
 }
 
-int	assign_z_metric(t_magic *data, char *filename)
+void	assign_z_metric(char *filename, t_map *map)
 {
 	int	i;
 	int j;
@@ -74,45 +83,45 @@ int	assign_z_metric(t_magic *data, char *filename)
 
 	fd = open(filename, O_RDONLY);
 	i = 0;
-	data->z_metric = ft_calloc(data->height, sizeof(int *));
-	while (i < data->height)
+	map->z_metric = ft_calloc(map->height, sizeof(int *));
+	while (i < map->height)
 	{
 		line = get_next_line(fd);
 		line_split = ft_split(line, ' ');
 		free(line);
-		(data->z_metric)[i] = ft_calloc(data->width, sizeof(int));
+		(map->z_metric)[i] = ft_calloc(map->width, sizeof(int));
 		j = 0;
-		while  (j < data->width)
+		while  (j < map->width)
 		{
-			(data->z_metric)[i][j] = ft_atoi(line_split[j]);
+			(map->z_metric)[i][j] = ft_atoi(line_split[j]);
 			j++;
 		}
 		ft_double_free(line_split);
 		i++;
 	}
-	return (1);	
+	// return (1);	
 }
-int	read_map(t_magic *data, char *filename)
+int	read_map(char *filename, t_map *map)
 {
 
-	data->width = get_width(filename);
-	data->height = get_height(filename);
-	assign_z_metric(data, filename);
+	get_width(filename, map);
+	get_height(filename, map);
+	assign_z_metric(filename, map);
 	return (1);
 }
 
-void	print_metric(t_magic *data)
+void	print_metric(t_map *map)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < data->height)
+	while (i < map->height)
 	{
 		j = 0;
-		while (j < data->width)
+		while (j < map->width)
 		{
-			printf("%3d",(data->z_metric)[i][j]);
+			printf("%3d",(map->z_metric)[i][j]);
 			j++;
 		}
 		printf("\n");
