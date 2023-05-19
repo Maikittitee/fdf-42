@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 00:44:40 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/19 17:44:09 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/19 17:56:50 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,14 @@
 #include <fcntl.h>
 #include <math.h>
 
+#define WIN_WIDTH 900
+#define WIN_HEIGHT 600
+
+
 typedef struct s_fdf{
 	void	*mlx_p;
 	void	*win_p;
+	void	*img_p;
 	int		zoom;
 } t_fdf;
 
