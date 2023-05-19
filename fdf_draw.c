@@ -46,10 +46,20 @@ void	bresenham(t_map *map,t_fdf *fdf, float x0, float y0, float x1, float y1)
 	step_x = delta_x/ft_max(ft_abs(delta_x), ft_abs(delta_y));
 	step_y = delta_y/ft_max(ft_abs(delta_x), ft_abs(delta_y));
 
+	int pixel_bits;
+	int line_bytes;
+	int endian;
+	char *buffer = mlx_get_data_addr(fdf->img_p, &pixel_bits, &line_bytes, &endian);	
+
 	while ( (int)(x1 - x0) || (int)(y1 - y0))
 	{
-		mlx_pixel_put(fdf->mlx_p, fdf->win_p, x0, y0, color);
-		// printf("End point x0:%.2f, y0:%.2f\nEnd point x1:%.2f, y1:%.2f\nStep x:%.2f, Step_y:%.2f\n",x0,y0,x1,y1,step_x, step_y);
+		int pixel = (y0 * line_bytes) + (x0 * 4);
+
+		buffer[pixel + 0] = (color) & 0xFF;
+		buffer[pixel + 1] = (color >> 8) & 0xFF;
+		buffer[pixel + 2] = (color >> 16) & 0xFF;
+		buffer[pixel + 3] = (color >> 24);
+		printf("End point x0:%.2f, y0:%.2f\nEnd point x1:%.2f, y1:%.2f\nStep x:%.2f, Step_y:%.2f\n",x0,y0,x1,y1,step_x, step_y);
 		x0 += step_x;
 		y0 += step_y;
 	}
