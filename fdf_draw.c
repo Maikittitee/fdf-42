@@ -14,76 +14,76 @@ float	ft_abs(float n)
 	return (n);
 }
 
-void	bresenham(t_map *map,t_fdf *fdf, float x0, float y0, float x1, float y1)
+void	bresenham(t_fdf *fdf, t_point s_pnt, t_point e_pnt)
 {
-	float step_x;
-	float	step_y;
-	float	delta_x;
-	float	delta_y;
-	int	color;
-	int	z;
+	t_img img;
+	t_draw draw;
+	int	color = 0xFF0000;
+	float max;
 
-	if (y0 < map->height && x0 < map->width)
-		z = (map->z_metric)[(int)y0][(int)x0];
-	else
-		z = 0;
 
-	if (z == 0)
-		color = rgb_to_int(1,1,1);
-	else
-		color = rgb_to_int(1,0,0);
+	// if (s_pnt.y < map->height && s_pnt.x < map->width)
+	// 	draw.z = (map->z_metric)[(int)s_pnt.y][(int)s_pnt.x];
+	// else
+	// 	draw.z = 0;
 
-	x0 *= fdf->zoom;
-	y0 *= fdf->zoom;
-	x1 *= fdf->zoom;
-	y1 *= fdf->zoom;
+	// if (s_pnt.z == 0)
+	// 	color = rgb_to_int(1,1,1);
+	// else
+	// 	color = rgb_to_int(1,0,0);
 
-	// rotateZ((float *)&x0, (float *)&y0, z, 0.8);
-	// rotateZ((float *)&x1, (float *)&y1, z, 0.8);
-	delta_x = (x1 - x0);
-	delta_y = (y1 - y0);
+	s_pnt.x *= fdf->zoom;
+	s_pnt.y *= fdf->zoom;
+	e_pnt.x *= fdf->zoom;
+	e_pnt.y *= fdf->zoom;
 
-	step_x = delta_x/ft_max(ft_abs(delta_x), ft_abs(delta_y));
-	step_y = delta_y/ft_max(ft_abs(delta_x), ft_abs(delta_y));
+	draw.dx = (e_pnt.x - s_pnt.x);
+	draw.dy = (e_pnt.y - s_pnt.y);
 
-	int pixel_bits;
-	int line_bytes;
-	int endian;
-	char *buffer = mlx_get_data_addr(fdf->img_p, &pixel_bits, &line_bytes, &endian);	
+	max = ft_max(ft_abs(draw.dx), ft_abs(draw.dy));
 
-	while ( (int)(x1 - x0) || (int)(y1 - y0))
+	draw.dx /= max;
+	draw.dy /= max;
+
+	char *buffer = mlx_get_data_addr(fdf->img_p, &(img.pixel_bits), &(img.line_bytes), &(img.endian));	
+
+	while ( (int)(s_pnt.x - e_pnt.x) || (int)(s_pnt.y - e_pnt.y))
 	{
-		int pixel = (y0 * line_bytes) + (x0 * 4);
+		int pixel = ((int)s_pnt.y * img.line_bytes) + ((int)s_pnt.x * 4);
 
 		buffer[pixel + 0] = (color) & 0xFF;
 		buffer[pixel + 1] = (color >> 8) & 0xFF;
 		buffer[pixel + 2] = (color >> 16) & 0xFF;
 		buffer[pixel + 3] = (color >> 24);
-		printf("End point x0:%.2f, y0:%.2f\nEnd point x1:%.2f, y1:%.2f\nStep x:%.2f, Step_y:%.2f\n",x0,y0,x1,y1,step_x, step_y);
-		x0 += step_x;
-		y0 += step_y;
+		printf("Start point x0:%.2f | y0:%.2f\nEnd point x1:%.2f, y1:%.2f\nStep x:%.2f, Step_y:%.2f\n",s_pnt.x,s_pnt.y,e_pnt.x,e_pnt.y,draw.dx, draw.dy);
+		s_pnt.x += draw.dx;
+		s_pnt.y += draw.dy;
 	}
 }
 
 void	draw_from_metric(t_map *map, t_fdf *fdf)
 {
-	int	x;
-	int	y;
+	t_point pnt;
 
-	y = 0;
-	while (y <= map->height)
+	pnt.y = 0;
+	while (pnt.y <= map->height)
 	{
-		x = 0;
-		while (x <= map->width)
+		pnt.x = 0;
+		while (pnt.x <= map->width)
 		{
-			if (x == map->width && y == map->height)
+			// if (pnt.y < map->height && pnt.x < map->width)
+			// 	pnt.z = (map->z_metric)[(int)pnt.y][(int)pnt.x];
+			// else
+			// 	pnt.z = 0;
+			// rotate_z(&pnt, pnt.z, 0);
+			if (pnt.x == map->width && pnt.y == map->height)
 				return ;
-			if (x < map->width || y == map->height)
-				bresenham(map, fdf, x, y, x + 1, y);
-			if (y < map->height || x == map->width)
-				 bresenham(map, fdf,x, y, x, y + 1);
-			x++;
+			if (pnt.x < map->width || pnt.y == map->height)
+				bresenham(fdf, pnt, (t_point){pnt.x + 1, pnt.y});
+			if (pnt.y < map->height || pnt.x == map->width)
+				bresenham(fdf, pnt, (t_point){pnt.x, pnt.y + 1});
+			pnt.x++;
 		}
-		y++;
+		pnt.y++;
 	}
 }

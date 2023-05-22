@@ -1,0 +1,1 @@
+// void	apply_color(t_map *map)

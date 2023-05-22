@@ -20,8 +20,9 @@ int	main(int argc, char **argv)
 	printf("############ = Z_Metric = ###########\n");
 	print_metric(map);
 	draw_from_metric(map, fdf);
-
-	mlx_put_image_to_window(fdf->mlx_p, fdf->win_p, fdf->img_p, 1, 100);
+	// bresenham(fdf, (t_point){0, 0}, (t_point){WIN_WIDTH, WIN_HEIGHT});
+	// bresenham(fdf, (t_point){0, 100}, (t_point){100, 0});
+	mlx_put_image_to_window(fdf->mlx_p, fdf->win_p, fdf->img_p, 0, 0);
 
 	mlx_loop(fdf->mlx_p);
 	return (0);
