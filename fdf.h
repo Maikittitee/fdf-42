@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 00:44:40 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/23 15:08:32 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:47:50 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,22 @@ void get_width(char *filename, t_map *map);
 void    get_height(char *filename, t_map *map);
 int     read_map(char *filename, t_map *map);
 void    print_map(t_map *map);
-void	rotate_z(t_point *point, float z, float theta);
 int rgb_to_int(double r, double g, double b);
 void draw_to_img(t_img img, char *buffer, int color, t_point pnt);
 
 
-// assign
+// assign & setting
 void    assign_xy(t_map *map_data);
 void	assign_z_color(char *filename, t_map *map_data);
+void	set_center(t_map *map_data);
 
 //utils 
 void    ft_double_free(char **s);
 void	ft_free_map(t_map *map_data);
+
+// rotate
+void	rotate_z(t_point *point, float theta);
+void	apply_iso(t_map *map_data, float theta);
+
 
 #endif
