@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_map.c                                          :+:      :+:    :+:   */
+/*   fdf_map_data.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/18 03:12:04 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:58:38 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,55 +73,27 @@ void	get_height(char *filename, t_map *map)
 	}
 }
 
-void	assign_z_metric(char *filename, t_map *map)
-{
-	int	i;
-	int j;
-	char *line;
-	char **line_split;
-	int fd;
-
-	fd = open(filename, O_RDONLY);
-	i = 0;
-	map->z_metric = ft_calloc(map->height, sizeof(int *));
-	while (i < map->height)
-	{
-		line = get_next_line(fd);
-		line_split = ft_split(line, ' ');
-		free(line);
-		(map->z_metric)[i] = ft_calloc(map->width, sizeof(int));
-		j = 0;
-		while  (j < map->width)
-		{
-			(map->z_metric)[i][j] = ft_atoi(line_split[j]);
-			j++;
-		}
-		ft_double_free(line_split);
-		i++;
-	}
-	// return (1);	
-}
 int	read_map(char *filename, t_map *map)
 {
 
 	get_width(filename, map);
 	get_height(filename, map);
-	assign_z_metric(filename, map);
 	return (1);
 }
 
-void	print_metric(t_map *map)
+void	print_map(t_map *map_data)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < map->height)
+	while (i < map_data->height)
 	{
 		j = 0;
-		while (j < map->width)
+		while (j < map_data->width)
 		{
-			printf("%3d",(map->z_metric)[i][j]);
+			// printf("(%.0f,%.0f,%.0f)",(map_data->map)[i][j].x, (map_data->map)[i][j].y, (map_data->map)[i][j].z);
+			printf("%4.0f", (map_data->map)[i][j].z);
 			j++;
 		}
 		printf("\n");

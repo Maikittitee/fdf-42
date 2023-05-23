@@ -7,8 +7,9 @@ LIB_DIR	:= ./lib
 
 SRCS	:=	fdf.c \
 			fdf_utils.c \
-			fdf_map.c \
+			fdf_map_data.c \
 			fdf_draw.c \
+			fdf_assign.c \
 			fdf_rotate.c
 OBJS	:= $(SRCS:.c=.o)
 
