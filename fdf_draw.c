@@ -30,9 +30,9 @@ void	ft_dda(t_fdf *fdf, t_point s_pnt, t_point e_pnt)
 	float	i = 0;
 	while (i < max)
 	{
-		if (s_pnt.x < WIN_WIDTH || s_pnt.y < WIN_HEIGHT)
+		if (s_pnt.x < WIN_WIDTH && s_pnt.y < WIN_HEIGHT)
 		{
-			int pixel = ((int)s_pnt.y * img.line_bytes) + ((int)s_pnt.x * 4);
+			int pixel = ((int)(s_pnt.y) * img.line_bytes) + ((int)(s_pnt.x) * 4);
 
 			buffer[pixel + 0] = (s_pnt.color) & 0xFF;
 			buffer[pixel + 1] = (s_pnt.color >> 8) & 0xFF;
@@ -44,7 +44,6 @@ void	ft_dda(t_fdf *fdf, t_point s_pnt, t_point e_pnt)
 		s_pnt.y += draw.dy;
 		i ++;
 	}
-	// printf("--------------\n");
 }
 
 void	draw_from_metric(t_map *map_data, t_fdf *fdf)
@@ -61,13 +60,9 @@ void	draw_from_metric(t_map *map_data, t_fdf *fdf)
 			if (j == map_data->width - 1 && i == map_data->height - 1)
 				return ;
 			if (j < map_data->width - 1 || i == map_data->height)
-			{
 				ft_dda(fdf, map_data->map[i][j], map_data->map[i][j + 1]);
-			}
 			if (i < map_data->height - 1 || j == map_data->width)
-			{
 				ft_dda(fdf, map_data->map[i][j], map_data->map[i + 1][j]);
-			}
 			j++;
 		}
 		i++;

@@ -6,21 +6,27 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 15:33:52 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/26 02:04:41 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/26 02:34:36 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	rotate_z(t_point *old_point, t_point *new_point, float theta)
+void	rotate_z(t_point *point, float theta)
 {
+	t_point	temp;
 
-	new_point->x = (old_point->x * cos(theta)) + (old_point->y * sin(theta));
-	new_point->y = (old_point->y * cos(theta)) - (old_point->x * sin(theta)) - old_point->z ; //del temp z
+	temp = *point;
+	point->x = (temp.x * cos(theta)) + (temp.y * sin(theta));
+	point->y = (temp.y * cos(theta)) - (point->x *sin(theta)) - temp.z;
+	// point->y = (temp.y * cos(theta)) - (temp.x * sin(theta)) - temp.z;
+	// point->x = (temp.x - temp.y * cos(theta));
+	// point->y = (temp.y + temp.x) *sin(theta) - temp.z;
 
 }
 
-void	apply_iso(t_map *old_map_data, t_map *new_map_data)
+
+void	apply_iso(t_map *old_map_data)
 {
 	int	i;
 	int	j;
@@ -31,9 +37,7 @@ void	apply_iso(t_map *old_map_data, t_map *new_map_data)
 		j = 0;
 		while (j < old_map_data->width)
 		{
-			rotate_z(&(old_map_data->map)[i][j], &(new_map_data->map)[i][j], old_map_data->theta);
-			(new_map_data->map)[i][j].z = (old_map_data->map)[i][j].z;
-			(new_map_data->map)[i][j].color = (old_map_data->map)[i][j].color;
+			rotate_z(&(old_map_data->map)[i][j], old_map_data->theta);
 			j++;
 		}		
 		i++;

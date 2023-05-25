@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 00:44:40 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/26 01:57:00 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/26 02:53:05 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,14 +77,15 @@ void draw_to_img(t_img img, char *buffer, int color, t_point pnt);
 void    assign_xy(t_map *map_data);
 void	assign_z_color(char *filename, t_map *map_data);
 void	apply_start_pnt(t_map *map_data);
+int	get_ratio(t_map *map_data);
 
 //utils 
 void    ft_double_free(char **s);
 void	ft_free_map(t_map *map_data);
 
 // rotate
-void	rotate_z(t_point *old_point, t_point *new_point, float theta);
-void	apply_iso(t_map *old_map_data, t_map *new_map_data);
+void	rotate_z(t_point *old_point, float theta);
+void	apply_iso(t_map *old_map_data);
 void	apply_difference(t_map *old_map_data, t_map *new_map_data);
 
 #endif
