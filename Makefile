@@ -10,7 +10,9 @@ SRCS	:=	fdf.c \
 			fdf_map_data.c \
 			fdf_draw.c \
 			fdf_assign.c \
-			fdf_rotate.c
+			fdf_rotate.c \
+			fdf_initial.c
+
 OBJS	:= $(SRCS:.c=.o)
 
 LIBFT_DIR	:= $(LIB_DIR)/libft

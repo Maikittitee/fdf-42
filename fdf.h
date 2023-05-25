@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 00:44:40 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/25 17:32:17 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/26 01:57:00 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,6 @@
 
 #define ESC_KEY 53
 #define Q_KEY 12
-
-enum {
-	ON_KEYDOWN = 2,
-	ON_KEYUP = 3,
-	ON_MOUSEDOWN = 4,
-	ON_MOUSEUP = 5,
-	ON_MOUSEMOVE = 6,
-	ON_EXPOSE = 12,
-	ON_DESTROY = 17
-};
-
 
 typedef	struct s_point{
 	float	x;
@@ -56,12 +45,11 @@ typedef	struct s_draw{
 } t_draw;
 
 typedef struct s_map{
-	// int	**z_metric;
-	// int	**color_metric;
 	int	width;
 	int	height;
 	float	ratio;
-	t_point **map;
+	float	theta;
+	t_point	**map;
 } t_map;
 
 typedef struct s_fdf{
@@ -88,15 +76,15 @@ void draw_to_img(t_img img, char *buffer, int color, t_point pnt);
 // assign & setting
 void    assign_xy(t_map *map_data);
 void	assign_z_color(char *filename, t_map *map_data);
-void	set_center(t_map *map_data);
+void	apply_start_pnt(t_map *map_data);
 
 //utils 
 void    ft_double_free(char **s);
 void	ft_free_map(t_map *map_data);
 
 // rotate
-void	rotate_z(t_point *point, float theta);
-void	apply_iso(t_map *map_data, float theta);
-
+void	rotate_z(t_point *old_point, t_point *new_point, float theta);
+void	apply_iso(t_map *old_map_data, t_map *new_map_data);
+void	apply_difference(t_map *old_map_data, t_map *new_map_data);
 
 #endif

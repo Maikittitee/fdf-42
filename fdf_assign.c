@@ -30,8 +30,6 @@ void	assign_z_color(char *filename, t_map *map_data)
 	char 	**value;
 	char	**each_point;
 
-	(void)map_data;
-
 	i = 0;
 	fd = open(filename, O_RDONLY);
 	line = get_next_line(fd);
@@ -44,7 +42,7 @@ void	assign_z_color(char *filename, t_map *map_data)
 			value = ft_split(each_point[j], ',');
 			if (value && value[0])
 			{
-				map_data->map[i][j].z = ft_atoi(value[0]) * map_data->ratio * 0.1 ;
+				map_data->map[i][j].z = ft_atoi(value[0]) * map_data->ratio * 0.17 ;
 			} 
 			if (map_data->map[i][j].z != 0)
 				map_data->map[i][j].color = 0xFF0000;
@@ -64,22 +62,4 @@ void	assign_z_color(char *filename, t_map *map_data)
 	}
 }
 
-void	set_center(t_map *map_data)
-{
-	int	i;
-	int	j;
 
-	i = 0;
-	while (i < map_data->height)
-	{
-		j = 0;
-		while (j < map_data->width)
-		{
-			(map_data->map)[i][j].x += (WIN_WIDTH / 2 - map_data->width / 2 ) ;
-			(map_data->map)[i][j].y += (WIN_HEIGHT /2 - map_data->height / 2);
-			j++;
-		}		
-		i++;
-	}
-	
-}
