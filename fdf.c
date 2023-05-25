@@ -1,5 +1,25 @@
 #include "fdf.h"
 
+int	close_win(t_fdf *fdf)
+{
+
+	mlx_destroy_image(fdf->mlx_p, fdf->img_p);
+	mlx_destroy_window(fdf->mlx_p, fdf->win_p);
+	exit(0);
+}
+
+int	ft_exit(int keycode,t_fdf *fdf)
+{
+
+	if (keycode == ESC_KEY)
+	{
+		mlx_destroy_image(fdf->mlx_p, fdf->img_p);
+		mlx_destroy_window(fdf->mlx_p, fdf->win_p);
+		exit(0);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_map *map_data;
@@ -22,7 +42,9 @@ int	main(int argc, char **argv)
 	print_map(map_data);
 	draw_from_metric(map_data, fdf);
 	mlx_put_image_to_window(fdf->mlx_p, fdf->win_p, fdf->img_p , 0, 0);
+	
+	mlx_hook(fdf->win_p, 17, 0, close_win, fdf);
+	mlx_hook(fdf->win_p, 2, 1, ft_exit, fdf);
 	mlx_loop(fdf->mlx_p);
-	ft_free_map(map_data);
 	return (0);
 }

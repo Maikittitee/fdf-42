@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 00:44:40 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/23 15:47:50 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/25 17:32:17 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,20 @@
 
 #define WIN_WIDTH 900
 #define WIN_HEIGHT 600
+
+#define ESC_KEY 53
+#define Q_KEY 12
+
+enum {
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_MOUSEDOWN = 4,
+	ON_MOUSEUP = 5,
+	ON_MOUSEMOVE = 6,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+};
+
 
 typedef	struct s_point{
 	float	x;
@@ -41,14 +55,7 @@ typedef	struct s_draw{
 	float	dy;
 } t_draw;
 
-typedef struct s_fdf{
-	void	*mlx_p;
-	void	*win_p;
-	void	*img_p;
-	// int		zoom;
-} t_fdf;
-
-typedef struct t_map{
+typedef struct s_map{
 	// int	**z_metric;
 	// int	**color_metric;
 	int	width;
@@ -56,6 +63,14 @@ typedef struct t_map{
 	float	ratio;
 	t_point **map;
 } t_map;
+
+typedef struct s_fdf{
+	void	*mlx_p;
+	void	*win_p;
+	void	*img_p;
+	// int		zoom;
+} t_fdf;
+
 
 float   ft_max(float a, float b);
 float   ft_abs(float n);
