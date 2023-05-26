@@ -44,17 +44,17 @@ void	assign_z_color(char *filename, t_map *map_data)
 			{
 				map_data->map[i][j].z = ft_atoi(value[0]) * map_data->ratio * 0.17 ;
 			} 
-			// if (map_data->map[i][j].z != 0)
-			// 	map_data->map[i][j].color = 0xFF0000;
-			// else 
-			// 	map_data->map[i][j].color = 0xFFFFFF;
 			if (value && value[1])
 			{
 				map_data->map[i][j].color = str_hex_to_int(value[1]);
-				// convert color
 			}
 			else
-				map_data->map[i][j].color = 0xFFFFFF;
+			{
+				if (map_data->map[i][j].z != 0)
+					map_data->map[i][j].color = 0xFF0000;
+				else
+					map_data->map[i][j].color = 0xFFFFFF;
+			}
 			ft_double_free(value);
 			j++;
 		}

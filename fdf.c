@@ -30,22 +30,22 @@ int	main(int argc, char **argv)
 	old_map_data = malloc(sizeof(t_map));
 	fdf = malloc(sizeof(t_fdf));
 	fdf->mlx_p = mlx_init();
-	fdf->win_p = mlx_new_window(fdf->mlx_p,WIN_WIDTH, WIN_HEIGHT,"ktunchar's FdF");
+	fdf->win_p = mlx_new_window(fdf->mlx_p,WIN_WIDTH, WIN_HEIGHT,"|");
 	fdf->img_p = mlx_new_image(fdf->mlx_p, WIN_WIDTH, WIN_HEIGHT);
 	if (argc != 2)
 		return (1);
 	read_map(argv[1], old_map_data);
 	printf("data.width: %d , data.height: %d\n", old_map_data->width, old_map_data->height);
-	old_map_data->theta = 0.8;
+	old_map_data->theta = -0.523599;
 	old_map_data->ratio = get_ratio(old_map_data);
 	printf("ratio: %f\n", old_map_data->ratio);
-	// old_map_data->ratio = 20;
+	// old_map_data->ratio = 0.5;
 	assign_xy(old_map_data);
 	assign_z_color(argv[1], old_map_data);
 	apply_iso(old_map_data);
 	apply_start_pnt(old_map_data);
 	// apply_difference(old_map_data, new_map_data);
-	print_map(old_map_data);
+	// print_map(old_map_data);
 	draw_from_metric(old_map_data, fdf);
 	mlx_put_image_to_window(fdf->mlx_p, fdf->win_p, fdf->img_p , 0, 0);
 	
