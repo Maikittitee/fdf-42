@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/23 14:58:38 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/27 00:42:57 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ void get_width(char *filename, t_map *map)
 		line = get_next_line(fd);
 		if (line && (size_t)map->width != count_word(line, ' '))
 		{
-			// free_map_exit(map);		
-			printf("The file width is wrong");
+			ft_putstr_fd("The file width is wrong", 1);
 			exit(1);
 		}			
 	}
@@ -81,24 +80,23 @@ int	read_map(char *filename, t_map *map)
 	return (1);
 }
 
-void	print_map(t_map *map_data)
-{
-	int	i;
-	int	j;
+// void	print_map(t_map *map_data)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	while (i < map_data->height)
-	{
-		j = 0;
-		while (j < map_data->width)
-		{
-			// printf("(%.0f,%.0f,%.0f)",(map_data->map)[i][j].x, (map_data->map)[i][j].y, (map_data->map)[i][j].z);
-			printf("%4.0f", (map_data->map)[i][j].z);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
+// 	i = 0;
+// 	while (i < map_data->height)
+// 	{
+// 		j = 0;
+// 		while (j < map_data->width)
+// 		{
+// 			printf("%4.0f", (map_data->map)[i][j].z);
+// 			j++;
+// 		}
+// 		printf("\n");
+// 		i++;
+// 	}
+// }
 
 

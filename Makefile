@@ -11,7 +11,9 @@ SRCS	:=	fdf.c \
 			fdf_draw.c \
 			fdf_assign.c \
 			fdf_rotate.c \
-			fdf_initial.c
+			fdf_initial.c \
+			fdf_key.c \
+			fdf_err.c
 
 OBJS	:= $(SRCS:.c=.o)
 
