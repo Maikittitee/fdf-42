@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:33:01 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/23 13:56:59 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:16:28 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,29 @@ int rgb_to_int(double r, double g, double b)
     color |= (int)(g * 255) << 8;
     color |= (int)(r * 255) << 16;
     return (color);
+}
+
+int	get_value(char c)
+{
+	if (c >= '0' && c <= '9')
+		return (c - '0');
+	else if (ft_isalpha(c) && c <= 'f')
+		return (c - 'a' + 10);
+	return (0);
+	
+}
+
+int	str_hex_to_int(char *str)
+{
+	int	i;
+	int	result;
+
+	i = 2;
+	result = 0;
+	while (str[i])
+	{
+		result += ((15 * result) + get_value(ft_tolower(str[i])));
+		i++;
+	}
+	return (result);
 }

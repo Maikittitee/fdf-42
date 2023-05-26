@@ -22,6 +22,8 @@ int	ft_exit(int keycode,t_fdf *fdf)
 
 int	main(int argc, char **argv)
 {
+	(void)argc;
+	(void)argv;
 	t_map *old_map_data;
 	t_fdf *fdf;
 
@@ -51,4 +53,5 @@ int	main(int argc, char **argv)
 	mlx_hook(fdf->win_p, 2, 1, ft_exit, fdf);
 	mlx_loop(fdf->mlx_p);
 	return (0);
+	// printf("%d\n", str_hex_to_int("0xFBAFF"));
 }

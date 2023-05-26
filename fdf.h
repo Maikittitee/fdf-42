@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 00:44:40 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/26 02:53:05 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:12:38 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ int	get_ratio(t_map *map_data);
 //utils 
 void    ft_double_free(char **s);
 void	ft_free_map(t_map *map_data);
+int	str_hex_to_int(char *str);
+int	get_value(char c);
 
 // rotate
 void	rotate_z(t_point *old_point, float theta);
