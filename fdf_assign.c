@@ -40,14 +40,18 @@ void	assign_z_color(char *filename, t_map *map_data)
 		while (j < map_data->width && each_point[j])
 		{
 			value = ft_split(each_point[j], ',');
-			if (value && value[0])
+			if (value)
 			{
-				map_data->map[i][j].z = ft_atoi(value[0]) * map_data->ratio * 0.17 ;
-			} 
-			if (value && value[1])
-			{
-				map_data->map[i][j].color = str_hex_to_int(value[1]);
+				if (value[0] && !all_digit(value[0]))
+					//free and exit
+				if (value[1] && !is_hex(value[1]))
+					//free and exit
+
 			}
+			if (value && value[0])
+				map_data->map[i][j].z = ft_atoi(value[0]) * map_data->ratio * 0.17 ;
+			if (value && value[1])
+				map_data->map[i][j].color = str_hex_to_int(value[1]);
 			else
 			{
 				if (map_data->map[i][j].z != 0)
