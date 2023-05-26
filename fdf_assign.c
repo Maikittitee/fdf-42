@@ -20,6 +20,57 @@ void    assign_xy(t_map *map_data)
 		i++;
     }
 }
+int	is_all_digit(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]) && str[i] != '\n')
+		{
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+void	ft_str_tolower(char *str)
+{
+	int	i;
+
+	i = 0;
+	while(str[i])
+	{
+		str[i] = ft_tolower(str[i]);
+		i++;
+	}
+}
+
+int	is_hex(char *str)
+{
+	int	i;
+
+	i = 0;
+	ft_str_tolower(str);
+	if (str[i] == '0')
+		i++;
+	if (str[i] == 'x')
+		i++;
+	while (str[i])
+	{
+		if (!ft_isalnum(str[i]) && str[i] != '\n')
+		{
+			return(0);
+		}
+		if (!ft_isdigit(str[i]) && (str[i] > 'f' || str[i] < 'a') && str[i] != '\n')
+		{
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
 
 void	assign_z_color(char *filename, t_map *map_data)
 {
@@ -40,16 +91,27 @@ void	assign_z_color(char *filename, t_map *map_data)
 		while (j < map_data->width && each_point[j])
 		{
 			value = ft_split(each_point[j], ',');
+			// check error
 			if (value)
 			{
-				if (value[0] && !all_digit(value[0]))
-					//free and exit
+				if (value[0] && !is_all_digit(value[0]))
+				{
+					printf("%s not digit", value[0]);
+					ft_double_free(value);
+					exit(1);
+				}
 				if (value[1] && !is_hex(value[1]))
-					//free and exit
-
+				{	
+					printf("not hex");
+					ft_double_free(value);
+					exit(1);
+				}
 			}
+			// get z
 			if (value && value[0])
 				map_data->map[i][j].z = ft_atoi(value[0]) * map_data->ratio * 0.17 ;
+
+			// get color(map[i][j])
 			if (value && value[1])
 				map_data->map[i][j].color = str_hex_to_int(value[1]);
 			else

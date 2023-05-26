@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:17:35 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/27 00:34:49 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/27 05:02:09 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	apply_start_pnt(t_map *map_data)
 		}		
 		i++;
 	}
+	printf("doneqq");
 	
 }
 float get_ratio(t_map *map_data)
