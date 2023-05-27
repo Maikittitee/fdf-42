@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf_draw.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/27 19:01:05 by ktunchar          #+#    #+#             */
+/*   Updated: 2023/05/27 19:02:30 by ktunchar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 float	ft_max(float a, float b)
@@ -19,15 +31,18 @@ void	ft_dda(t_fdf *fdf, t_point s_pnt, t_point e_pnt)
 	t_img img;
 	t_draw draw;
 	float max;
+	float	i;
+	char *buffer;
 
 	draw.dx = (e_pnt.x - s_pnt.x);
 	draw.dy = (e_pnt.y - s_pnt.y);
 	max = ft_max(ft_abs(draw.dx), ft_abs(draw.dy));
 	draw.dx /= max;
-	draw.dy /= max;
-	char *buffer = mlx_get_data_addr(fdf->img_p, &(img.pixel_bits), &(img.line_bytes), &(img.endian));	
+	draw.dy /= max;	
+	buffer = mlx_get_data_addr(fdf->img_p, &(img.pixel_bits), \
+			&(img.line_bytes), &(img.endian));	
 
-	float	i = 0;
+	i = 0;
 	while (i < max)
 	{
 		if (s_pnt.x < WIN_WIDTH && s_pnt.y < WIN_HEIGHT)

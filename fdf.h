@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 00:44:40 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/27 01:25:50 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/27 16:47:35 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_fdf{
 // void draw_to_img(t_img img, char *buffer, int color, t_point pnt);
 
 
-// readmap
+// read map
 void	get_width(char *filename, t_map *map);
 void    get_height(char *filename, t_map *map);
 int     read_map(char *filename, t_map *map);
@@ -79,6 +79,7 @@ float	get_ratio(t_map *map_data);
 
 // err
 void    check_arg(char *filename);
+void    is_format_error(char **value);
 
 // draw
 void	ft_dda(t_fdf *fdf, t_point s_pnt, t_point e_pnt);

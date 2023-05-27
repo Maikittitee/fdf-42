@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:17:35 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/27 05:02:09 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/27 16:39:49 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,11 @@
 int get_rheight(t_map *map_data)
 {
 	return (ft_abs(map_data->height * sin(map_data->theta)) + ft_abs(map_data->width * cos(map_data->theta)));
-	// return ((map_data->height + map_data->width) * cos(map_data->theta));
 }	
 
 int get_rwidth(t_map *map_data)
 {
 	return (ft_abs(map_data->height * cos(map_data->theta)) + ft_abs(map_data->width * sin(map_data->theta)));
-	// return ((map_data->height + map_data->width) * sin(map_data->theta));
 }	
 
 void	apply_start_pnt(t_map *map_data)
@@ -48,7 +46,6 @@ void	apply_start_pnt(t_map *map_data)
 		}		
 		i++;
 	}
-	printf("doneqq");
 	
 }
 float get_ratio(t_map *map_data)
