@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:52:36 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/27 22:12:56 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 02:26:36 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,20 @@ void	assign_z_color(char *filename, t_map *map_data)
 	int		fd;
 	int		i;
 	char	*line;
+	char	*temp;
 
 	i = 0;
 	fd = open(filename, O_RDONLY);
-	line = get_next_line(fd);
+	temp = get_next_line(fd);
+	line = ft_strtrim(temp, "\n");
+	free(temp);
 	while (line)
 	{
 		apply_to_each_point(line, map_data, i);
 		free(line);
-		line = get_next_line(fd);
+		temp = get_next_line(fd);
+		line = ft_strtrim(temp, "\n");
+		free(temp);
 		i++;
 	}
 }

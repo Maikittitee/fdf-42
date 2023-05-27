@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 20:55:24 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 01:25:21 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 03:21:08 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@ int	main(int argc, char **argv)
 	fdf->win_p = mlx_new_window(fdf->mlx_p, WIN_WIDTH, WIN_HEIGHT, "pmew");
 	fdf->img_p = mlx_new_image(fdf->mlx_p, WIN_WIDTH, WIN_HEIGHT);
 	read_map(argv[1], map_data);
-	ft_initialize(map_data, argv[1], -0.523599);
-	draw_from_metric(map_data, fdf);
-	mlx_put_image_to_window(fdf->mlx_p, fdf->win_p, fdf->img_p, 0, 0);
-	mlx_hook(fdf->win_p, 17, 0, close_win, fdf);
-	mlx_hook(fdf->win_p, 2, 1, ft_exit, fdf);
+	// map_data->height = 11;
+	// map_data->width = 19;
+	// printf("herere");
+	// ft_initialize(map_data, argv[1], -0.523599);
+	// draw_from_metric(map_data, fdf);
+	// mlx_put_image_to_window(fdf->mlx_p, fdf->win_p, fdf->img_p, 0, 0);
+	// mlx_hook(fdf->win_p, 17, 0, close_win, fdf);
+	// mlx_hook(fdf->win_p, 2, 1, ft_exit, fdf);
 	mlx_loop(fdf->mlx_p);
 	return (0);
 }
