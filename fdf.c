@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 20:55:24 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 04:43:32 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 06:25:17 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ void	ft_initialize(t_map *map_data, char *filename, float theta)
 	map_data->theta = theta;
 	assign_xy(map_data);
 	assign_z_color(filename, map_data);
-	// print_map(map_data);
 	map_data->ratio = get_ratio(map_data);
+	// map_data->ratio = 1.2;
+	dprintf(1, "ratio: %f\n", map_data->ratio);
 	apply_ratio(map_data);
 	apply_iso(map_data);
+	// apply_iso(map_data);
 	apply_start_pnt(map_data);
 }

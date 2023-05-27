@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 04:58:42 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 06:02:10 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,60 +32,6 @@ size_t	count_word(char const *s, char c)
 	}	
 	return (count);
 }
-
-// void	get_width(char *filename, t_map *map_data)
-// {
-// 	char	*line;
-// 	int		fd;
-
-// 	fd = open(filename, O_RDONLY);
-// 	if (fd == -1)
-// 	{
-// 		ft_putendl_fd("Cannot open file", 2);
-// 		exit(1);	
-// 	}
-// 	line = get_next_line(fd);
-// 	map_data->width = count_word(line, ' ');
-// 	free(line);
-// 	close(fd);	
-// }
-
-// void	get_height(char *filename, t_map *map_data)
-// {
-// 	char	*line;
-// 	int		fd;
-
-// 	fd = open(filename, O_RDONLY);
-// 	// if (fd == -1)
-// 	// {
-// 	// 	ft_putendl_fd("Cannot open file", 1);
-// 	// 	exit(1);	
-// 	// }
-// 	map_data->height = 0;
-// 	// line = get_next_line(fd);
-// 	// while (line)
-// 	// {
-// 	// 	map_data->height++;
-// 	// 	free(line);
-// 	// 	line = get_next_line(fd);
-// 	// }
-// 	while (1)
-// 	{
-// 		line = get_next_line(fd);
-// 		dprintf(1, "the line is %s", line);
-// 		if (!line)
-// 			break;
-// 		else
-// 		{
-// 			free(line);
-// 			map_data->height++;
-// 		}
-// 	}
-// 	// if (line)
-// 	// 	free(line);
-// 	close(fd);
-	
-// }
 
 char	*get_next_line_without_nl(int fd)
 {
@@ -148,18 +94,20 @@ void get_width(char *filename, t_map *map)
 	int		fd;
 
 	fd = open(filename,O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putendl_fd("Cannot open file", 1);
+		exit(1);	
+	}
 	line = get_next_line(fd);
 	map->width = count_word(line, ' ');
 	while (line)
 	{
 		free(line);
 		line = get_next_line(fd);
-		if (line && (size_t)map->width != count_word(line, ' '))
-		{
-			ft_putstr_fd("The file width is wrong\n", 1);
-			exit(1);
-		}			
 	}
+	if (line)
+		free(line);
 	
 }
 
@@ -169,12 +117,22 @@ void	get_height(char *filename, t_map *map)
 	int		fd;
 
 	fd = open(filename,O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putendl_fd("Cannot open file", 1);
+		exit(1);	
+	}
 	map->height = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (!line)
 			break ;
+		if (*line == '\n')
+		{
+			ft_putendl_fd("Wrong file line lenght", 1);
+			exit(1);
+		}
 		else
 		{
 			free(line);
@@ -182,9 +140,32 @@ void	get_height(char *filename, t_map *map)
 		}
 	}
 }
+
+void	check_empty_file(char *filename)
+{
+	int	fd;
+	char	*line;
+	
+	fd = open(filename, O_RDONLY);
+	line = get_next_line(fd);
+	if (!line || *line == '\n' || *line == '\0')
+    {
+        ft_putendl_fd("No data found", 1);
+        exit(1);
+    }
+	while(line)
+	{
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (line)
+		free(line);
+	
+}
 int	read_map(char *filename, t_map *map_data)
 {
 	check_can_open(filename);
+	check_empty_file(filename);
 	get_height(filename, map_data);
 	get_width(filename, map_data);
 	check_width(filename, map_data);

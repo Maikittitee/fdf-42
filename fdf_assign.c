@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 18:52:36 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 04:37:17 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 06:28:08 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	apply_ratio(t_map *map_data)
 		{
 			(map_data->map)[i][j].x *= map_data->ratio;
 			(map_data->map)[i][j].y *= map_data->ratio;
-			(map_data->map)[i][j].z *= map_data->ratio * 0.17;
+			(map_data->map)[i][j].z *= map_data->ratio * MAGIC_Z ;
 			j++;
 		}
 		i++;
