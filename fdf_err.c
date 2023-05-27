@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:47:00 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/27 21:09:35 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 04:26:48 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ void	is_format_error(char **value)
 	{
 		if (value[0] && !is_all_digit(value[0]))
 		{
-			printf("%s not digit", value[0]);
+			dprintf(1,"%s not digit", value[0]);
 			ft_double_free(value);
 			exit(1);
 		}
 		if (value[1] && !is_hex(value[1]))
 		{	
-			printf("not hex");
+			dprintf(1,"not hex");
 			ft_double_free(value);
 			exit(1);
 		}
@@ -89,8 +89,14 @@ void	check_arg(char *filename)
 
 	len = ft_strlen(filename);
 	if (ft_strnstr(filename, ".fdf", len) == NULL)
+	{
+		ft_putendl_fd("only .fdf file", 1);
 		exit(1);
+	}
 	if (filename[len - 1] != 'f' || filename[len - 2] != 'd' || \
 		filename[len - 3] != 'f' || filename[len - 4] != '.')
+	{	
+		ft_putendl_fd("only .fdf file", 1);
 		exit(1);
+	}
 }

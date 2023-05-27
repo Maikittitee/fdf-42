@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 04:08:50 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 04:44:02 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	get_height(char *filename, t_map *map_data)
 	if (line)
 		free(line);
 	close(fd);
+	
 }
 
 char	*get_next_line_without_nl(int fd)
@@ -135,7 +136,8 @@ void	check_empthy_n_open(char *filename)
 		exit(1);
 		
 	}
-	free(line);	
+	free(line);
+	close(fd);	
 }
 
 int	read_map(char *filename, t_map *map_data)
@@ -145,4 +147,22 @@ int	read_map(char *filename, t_map *map_data)
 	get_width(filename, map_data);
 	check_width(filename, map_data);
 	return (1);
+}
+void	print_map(t_map *map_data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < map_data->height)
+	{
+		j = 0;
+		while (j < map_data->width)
+		{
+			printf("%4.0f", (map_data->map)[i][j].z);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }
