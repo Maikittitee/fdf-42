@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:17:35 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 06:28:32 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 06:46:34 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,8 @@ float	get_ratio(t_map *map_data)
 		ratio = y_ratio;
 	else
 		ratio = x_ratio;
+	if (ratio <= 0)
+		return (1/(get_max_z(map_data) * MAGIC_Z));
 	if (ratio <= 1)
 		return (1.5);
 	return (ratio);

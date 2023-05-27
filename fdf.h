@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 00:44:40 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 06:28:00 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 06:31:40 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 #define WIN_HEIGHT 1080
 
 #define ESC_KEY 53
-#define Q_KEY 12
 #define MAGIC_Z 0.5
 
 typedef	struct s_point{
