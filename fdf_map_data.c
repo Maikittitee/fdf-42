@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/27 00:42:57 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 01:34:27 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,26 @@ size_t	count_word(char const *s, char c)
 	return (count);
 }
 
-void get_width(char *filename, t_map *map)
+void	get_width(char *filename, t_map *map)
 {
-	char 	*line;
+	char	*line;
+	char	*old_line;
 	int		fd;
 
-	fd = open(filename,O_RDONLY);
-	line = get_next_line(fd);
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putstr_fd("Cannot open file", 2);
+		exit(1);
+	}
+	old_line = get_next_line(fd);
+	if (!old_line)
+	{
+		ft_putstr_fd("No data found", 2);
+		exit(1);
+	}
+	line = ft_strtrim(old_line, '\n');
+	free(old_line);	
 	map->width = count_word(line, ' ');
 	while (line)
 	{
@@ -45,19 +58,18 @@ void get_width(char *filename, t_map *map)
 		line = get_next_line(fd);
 		if (line && (size_t)map->width != count_word(line, ' '))
 		{
-			ft_putstr_fd("The file width is wrong", 1);
+			ft_putstr_fd("File format was wrong", 2);
 			exit(1);
 		}			
-	}
-	
+	}	
 }
 
 void	get_height(char *filename, t_map *map)
 {
-	char *line;
+	char	*line;
 	int		fd;
 
-	fd = open(filename,O_RDONLY);
+	fd = open(filename, O_RDONLY);
 	map->height = 0;
 	while (1)
 	{
@@ -74,12 +86,11 @@ void	get_height(char *filename, t_map *map)
 
 int	read_map(char *filename, t_map *map)
 {
-
 	get_width(filename, map);
 	get_height(filename, map);
 	return (1);
 }
-
+//0----------------------------
 // void	print_map(t_map *map_data)
 // {
 // 	int	i;
@@ -98,5 +109,3 @@ int	read_map(char *filename, t_map *map)
 // 		i++;
 // 	}
 // }
-
-

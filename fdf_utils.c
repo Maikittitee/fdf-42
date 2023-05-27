@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 15:33:01 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/26 17:16:28 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/27 21:45:13 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_double_free(char **s)
 	int	i;
 
 	i = 0;
-	while  (s[i])
+	while (s[i])
 	{
 		free(s[i]);
 		i++;
@@ -40,15 +40,6 @@ void	ft_free_map(t_map *map_data)
 	free (map_data);
 }
 
-int rgb_to_int(double r, double g, double b)
-{
-    int color = 0;
-    color |= (int)(b * 255);
-    color |= (int)(g * 255) << 8;
-    color |= (int)(r * 255) << 16;
-    return (color);
-}
-
 int	get_value(char c)
 {
 	if (c >= '0' && c <= '9')
@@ -56,7 +47,6 @@ int	get_value(char c)
 	else if (ft_isalpha(c) && c <= 'f')
 		return (c - 'a' + 10);
 	return (0);
-	
 }
 
 int	str_hex_to_int(char *str)

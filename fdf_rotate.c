@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 15:33:52 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/26 19:18:41 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/27 21:42:25 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ void	rotate_z(t_point *point, float theta)
 	temp = *point;
 	point->x = (temp.x * cos(theta)) + (temp.y * sin(theta));
 	point->y = (temp.y * cos(theta)) - (temp.x * sin(theta)) - temp.z;
-
 }
-
 
 void	apply_iso(t_map *old_map_data)
 {
@@ -38,8 +36,7 @@ void	apply_iso(t_map *old_map_data)
 			j++;
 		}		
 		i++;
-	}
-	
+	}	
 }
 
 void	apply_difference(t_map *old_map_data, t_map *new_map_data)
