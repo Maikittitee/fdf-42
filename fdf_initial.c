@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:17:35 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 07:40:07 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 08:22:19 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,9 @@ float	get_ratio(t_map *map_data)
 	float	ratio;
 
 	x_ratio = floor(WIN_WIDTH / (get_rwidth(map_data) + \
-	(get_max_z(map_data) * MAGIC_Z * 2)));
+		(get_max_z(map_data) * MAGIC_Z * 2)));
 	y_ratio = floor(WIN_HEIGHT / (get_rheight(map_data) + \
-	(get_max_z(map_data) * MAGIC_Z *  2)));
-	printf("x-y-ratio %f, %f\n", x_ratio, y_ratio);
+		(get_max_z(map_data) * MAGIC_Z * 2)));
 	if (x_ratio > y_ratio)
 		ratio = y_ratio;
 	else
@@ -89,7 +88,7 @@ float	get_ratio(t_map *map_data)
 		exit(1);
 	}
 	if (ratio <= 0)
-		return (1/(get_max_z(map_data) * MAGIC_Z));
+		return (1 / (get_max_z(map_data) * MAGIC_Z));
 	if (ratio <= 1)
 		return (1.5);
 	return (ratio);

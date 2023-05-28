@@ -13,7 +13,8 @@ SRCS	:=	fdf.c \
 			fdf_rotate.c \
 			fdf_initial.c \
 			fdf_key.c \
-			fdf_err.c
+			fdf_err.c \
+			fdf_check_read.c
 
 OBJS	:= $(SRCS:.c=.o)
 

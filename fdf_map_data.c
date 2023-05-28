@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 06:02:10 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 08:31:39 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,40 +44,13 @@ char	*get_next_line_without_nl(int fd)
 	ret = ft_strtrim(line, "\n");
 	if (*ret == 0)
 		return (NULL);
-	free(line);	
+	free(line);
 	return (ret);
 }
 
-void	check_width(char *filename, t_map *map_data)
+void	get_width(char *filename, t_map *map)
 {
-	int	fd;
-	char *line;
-	size_t count;
-	int	i;
-
-	i = 0;
-	fd = open(filename, O_RDONLY);
-	line = get_next_line_without_nl(fd);
-	count =	count_word(line, ' ');
-	while (i < map_data->height - 1)
-	{
-		free(line);
-		line = get_next_line_without_nl(fd);
-		if (line && count != count_word(line, ' '))
-		{
-			free(line);
-			ft_putendl_fd("Width not match", 1);
-			exit(1);
-		}
-		if (line)
-			count =	count_word(line, ' ');
-		i++;
-	}
-	close(fd);	
-}
-
-void	check_can_open(char *filename)
-{
+	char	*line;
 	int		fd;
 
 	fd = open(filename, O_RDONLY);
@@ -85,19 +58,6 @@ void	check_can_open(char *filename)
 	{
 		ft_putendl_fd("Cannot open file", 1);
 		exit(1);
-	}
-	close(fd);	
-}
-void get_width(char *filename, t_map *map)
-{
-	char 	*line;
-	int		fd;
-
-	fd = open(filename,O_RDONLY);
-	if (fd == -1)
-	{
-		ft_putendl_fd("Cannot open file", 1);
-		exit(1);	
 	}
 	line = get_next_line(fd);
 	map->width = count_word(line, ' ');
@@ -108,21 +68,19 @@ void get_width(char *filename, t_map *map)
 	}
 	if (line)
 		free(line);
-	
 }
 
 void	get_height(char *filename, t_map *map)
 {
-	char *line;
+	char	*line;
 	int		fd;
 
-	fd = open(filename,O_RDONLY);
+	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
 		ft_putendl_fd("Cannot open file", 1);
 		exit(1);	
 	}
-	map->height = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -141,51 +99,15 @@ void	get_height(char *filename, t_map *map)
 	}
 }
 
-void	check_empty_file(char *filename)
-{
-	int	fd;
-	char	*line;
-	
-	fd = open(filename, O_RDONLY);
-	line = get_next_line(fd);
-	if (!line || *line == '\n' || *line == '\0')
-    {
-        ft_putendl_fd("No data found", 1);
-        exit(1);
-    }
-	while(line)
-	{
-		free(line);
-		line = get_next_line(fd);
-	}
-	if (line)
-		free(line);
-	
-}
+
 int	read_map(char *filename, t_map *map_data)
 {
 	check_can_open(filename);
 	check_empty_file(filename);
+	map_data->height = 0;
 	get_height(filename, map_data);
 	get_width(filename, map_data);
 	check_width(filename, map_data);
 	return (1);
 }
-void	print_map(t_map *map_data)
-{
-	int	i;
-	int	j;
 
-	i = 0;
-	while (i < map_data->height)
-	{
-		j = 0;
-		while (j < map_data->width)
-		{
-			printf("%4.0f", (map_data->map)[i][j].z);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}

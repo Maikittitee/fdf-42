@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 15:33:52 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 06:56:26 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 07:59:28 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	rotate_z(t_point *point, float theta)
 	t_point	temp;
 
 	temp = *point;
-// 	point->x = (temp.x * cos(theta)) + (temp.y * sin(theta));
-// 	point->y = (temp.y * cos(theta)) - (temp.x * sin(theta)) - temp.z;
 	point->x = (temp.x - temp.y) * cos(theta);
 	point->y = ((temp.y + temp.x) * sin(theta)) - temp.z;
 	

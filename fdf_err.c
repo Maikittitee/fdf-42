@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 16:47:00 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 04:26:48 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 08:21:20 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	is_hex(char *str)
 		if (!ft_isdigit(str[i]) && (str[i] > 'f' || str[i] < 'a') \
 			&& str[i] != '\n')
 			return (0);
+		if (i == 8 && str[i] != '\n')
+			return (0);
 		i++;
 	}
 	return (1);
@@ -68,13 +70,13 @@ void	is_format_error(char **value)
 	{
 		if (value[0] && !is_all_digit(value[0]))
 		{
-			dprintf(1,"%s not digit", value[0]);
+			ft_putendl_fd("z file format is not digit.", 1);
 			ft_double_free(value);
 			exit(1);
 		}
 		if (value[1] && !is_hex(value[1]))
 		{	
-			dprintf(1,"not hex");
+			ft_putendl_fd("color format in file is not hex.", 1);
 			ft_double_free(value);
 			exit(1);
 		}
