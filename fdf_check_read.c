@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 08:30:10 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 08:31:18 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 20:27:48 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	check_can_open(char *filename)
 	}
 	close(fd);
 }
+
 void	check_empty_file(char *filename)
 {
 	int		fd;

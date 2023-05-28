@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 17:31:17 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 19:43:29 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 20:28:23 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	get_height(char *filename, t_map *map)
 	if (fd == -1)
 	{
 		ft_putendl_fd("Cannot open file", 1);
-		exit(1);	
+		exit(1);
 	}
 	while (1)
 	{
@@ -99,7 +99,6 @@ void	get_height(char *filename, t_map *map)
 	}
 }
 
-
 int	read_map(char *filename, t_map *map_data)
 {
 	check_can_open(filename);
@@ -110,4 +109,3 @@ int	read_map(char *filename, t_map *map_data)
 	check_width(filename, map_data);
 	return (1);
 }
-
