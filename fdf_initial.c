@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:17:35 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 19:42:04 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 21:14:01 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ float	get_ratio(t_map *map_data)
 		ratio = y_ratio;
 	else
 		ratio = x_ratio;
-	if (ratio >= 180)
+	if (ratio > 180)
 	{
 		ft_putendl_fd("OVERFLOW", 1);
 		exit(1);
