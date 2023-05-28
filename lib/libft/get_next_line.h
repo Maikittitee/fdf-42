@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 23:01:16 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/03/26 01:16:06 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 19:43:42 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 5000
 # endif
 
 # include <fcntl.h>
