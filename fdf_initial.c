@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:17:35 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 06:46:34 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/05/28 07:32:26 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ float	get_max_z(t_map *map_data)
 
 int	get_rheight(t_map *map_data)
 {
-	return (ft_abs(map_data->height * sin(map_data->theta)) + \
+	return (ft_abs(map_data->height * cos(map_data->theta)) + \
 		ft_abs(map_data->width * cos(map_data->theta)));
 }	
 
 int	get_rwidth(t_map *map_data)
 {
-	return (ft_abs(map_data->height * cos(map_data->theta)) + \
+	return (ft_abs(map_data->height * sin(map_data->theta)) + \
 		ft_abs(map_data->width * sin(map_data->theta)));
 }	
 
@@ -58,10 +58,10 @@ void	apply_start_pnt(t_map *map_data)
 		while (j < map_data->width)
 		{
 			(map_data->map)[i][j].y += ((WIN_HEIGHT / 2) - \
-			(get_rheight(map_data) / 2 * map_data->ratio));
+			(get_rheight(map_data) / 4 * map_data->ratio));
 			(map_data->map)[i][j].x += ((WIN_WIDTH / 2) - \
 			((get_rwidth(map_data) - map_data->height * cos(map_data->theta)) \
-			/ 2 * map_data->ratio));
+			/ 4 * map_data->ratio));
 			j++;
 		}		
 		i++;
@@ -74,9 +74,10 @@ float	get_ratio(t_map *map_data)
 	float	y_ratio;
 	float	ratio;
 
-	x_ratio = floor(WIN_WIDTH / (get_rwidth(map_data)));
-	y_ratio = floor(WIN_HEIGHT / (get_rheight(map_data) + \
+	x_ratio = floor(WIN_WIDTH / (get_rwidth(map_data) + \
 	(get_max_z(map_data) * MAGIC_Z * 2)));
+	y_ratio = floor(WIN_HEIGHT / (get_rheight(map_data) + \
+	(get_max_z(map_data) * MAGIC_Z *  2)));
 	printf("x-y-ratio %f, %f\n", x_ratio, y_ratio);
 	if (x_ratio > y_ratio)
 		ratio = y_ratio;
