@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/03 14:49:14 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 22:32:33 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/06/19 19:52:51 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	char		*buffer;
 	int			i;
 	int			j;
-	static int	count;
 
-	count++;
 	if (!s2)
 		return (NULL);
 	buffer = malloc((ft_strlen_mode(s1, 0) + \
