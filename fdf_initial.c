@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 23:17:35 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 21:14:01 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:11:04 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,9 @@ float	get_ratio(t_map *map_data)
 		ft_putendl_fd("OVERFLOW", 1);
 		exit(1);
 	}
-	if (ratio <= 0)
-		return (1 / (get_max_z(map_data) * MAGIC_Z));
+	// if (ratio <= 0)
+	// 	return (1 / (get_max_z(map_data) * MAGIC_Z));
 	if (ratio <= 1)
-		return (1.5);
+		return (1.2);
 	return (ratio);
 }

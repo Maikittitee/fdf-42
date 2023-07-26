@@ -6,7 +6,7 @@
 /*   By: ktunchar <ktunchar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 00:44:40 by ktunchar          #+#    #+#             */
-/*   Updated: 2023/05/28 22:31:02 by ktunchar         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:08:36 by ktunchar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # include <fcntl.h>
 # include <math.h>
 
-# define WIN_WIDTH 1920
-# define WIN_HEIGHT 1080
+# define WIN_WIDTH 900
+# define WIN_HEIGHT 600
 
 # define ESC_KEY 53
-# define MAGIC_Z 0.5
+# define MAGIC_Z 0.9
 
 typedef struct s_point{
 	float	x;
